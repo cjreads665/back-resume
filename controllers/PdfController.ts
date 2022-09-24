@@ -19,7 +19,7 @@ export default (async function () {
     try{
         const browser = await puppeteer.launch()
         const page = await browser.newPage()
-        const content = await compile('sample1',data)
+        const content = await compile('mainTemp',data)
         await page.setContent(content);
         await page.emulateMediaType('screen')
         await page.pdf({
@@ -29,7 +29,7 @@ export default (async function () {
         })
         console.log('pdf created');
         await browser.close()
-        process.exit()
+        // process.exit()
 
     } catch(err){
         console.log('error' + err);
