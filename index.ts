@@ -7,8 +7,15 @@ const fs = require('fs-extra')
 //middleware for body-parser
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
-
+let postData;
+let cors = require("cors");
+app.use(cors());
 //routes
+
+app.post("/data",(req:Request,res:Response) => {
+  console.log(req.body);
+  });
+
 
 app.get('/', (req:Request, res:Response) => {
     PdfController()
@@ -23,6 +30,7 @@ app.get('/', (req:Request, res:Response) => {
     file.pipe(res);
   })
 
+  
 
 
 try {
