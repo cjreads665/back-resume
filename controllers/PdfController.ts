@@ -15,7 +15,7 @@ const compile  = async function (templateName:any,data:Object){
 }
 
 
-export default (async function () {
+export default (async function (postData:any) {
     try{
         const browser = await puppeteer.launch({
             headless: true,
@@ -25,7 +25,7 @@ export default (async function () {
             ]
         })
         const page = await browser.newPage()
-        const content = await compile('mainTemp',data)
+        const content = await compile('mainTemp',postData)
         await page.setContent(content);
         await page.emulateMediaType('screen')
         await page.pdf({

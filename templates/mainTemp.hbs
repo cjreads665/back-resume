@@ -8,126 +8,94 @@
   </head>
   <body class="mx-12 my-6">
     <div>
-    <h1 class="text-left font-semibold text-4xl">John Doe</h1>
+    <h1 class="text-left font-semibold text-4xl">{{personalInfo.name}}</h1>
     <h5 class="font-medium text-xl my-2">Web Developer</h5>
   </div>
     <div class="my-2">
-    <span>Kolkata, India |</span> 
-    <span>Phone: 9874563210 |</span> 
-    <span>Email: okay@gmail.com |</span>
+    <span>{{personalInfo.place}} |</span> 
+    <span>Phone: {{personalInfo.phone}} |</span> 
+    <span>Email: {{personalInfo.email}} |</span>
     <span>Github: github-link |</span>
     <span>LinkedIn: lk-link.com |</span>
-    <span>Website: lk-link.com </span>
+    <span>Website: {{personalInfo.website}} </span>
     </div>
 
   <div>
-<h2 class="font-medium text-lg my-2 mt-4">Summary</h2>
+<h2 class="font-bold text-lg my-2 mt-4">Summary</h2>
     <p>
-    Lorem ipsum dolor sit amet consectetur adipisicing elit.
- Delectus nemo fugiat neque tempore consectetur nihil alias ullam esse corporis fugit
- deserunt maxime, numquam eos repellendus, deleniti quae at fuga repudiandae!
+    {{personalInfo.summary}}
     </p>
   </div>
 
-<div class="my-2">
-    <h2 class="font-medium text-lg">Skills</h2>
-<ul>
-<li>Programming Languages : HTML | CSS | SASS | Javascript  | Typescript</li>
-<li>Frameworks : React | Nodejs </li>
-<li>Additional Tools : GraphQL | Git | Linux | jQuery | Redux Toolkit | NPM</li>
-<li>Soft Skills : Great Communication | Creative | Organised | Team Player</li>
+<div class="my-6">
+    <h2 class="font-bold text-lg">Skills</h2>
+<ul class="mt-4">
+<li> <span class="font-medium">Programming Languages</span>
+ : {{skills.languages}} </li>
+<li><span class="font-medium"> Frameworks</span> : {{skills.frameworks}} </li>
+<li><span class="font-medium"> Additional Tools</span> : {{skills.tools}} </li>
+<li><span class="font-medium"> Soft Skills</span> : {{skills.softSkills}} </li>
 </ul>
 </div>
 
-<div class="my-2">
-  <h2 class="font-medium text-lg ">Work Experience</h2>
+<div class="my-6">
+  <h2 class="font-bold text-lg ">Work Experience</h2>
 <ul>
-  <li>
-  <span class=" text-grey-100 text-md ">BizPilot, India | Software Quality Engineer | July 2022 - Present</span>
+  {{#each experience}}
+  <li class="my-4"><!-- have to make an input for present date -->
+  <span class="font-medium text-grey-100 text-md ">{{compName}} | {{role}} | {{startDate.[0]}} {{startDate.[1]}} - {{endDate.[0]}} {{endDate.[1]}}</span>
   <div>
-    <ul class="list-disc">
-    <li>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took </li>
-    <li>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took </li>
-    <li>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took </li>
-    </ul>
+    {{jobDesc}}
+  {{/each}}
   </div> 
   </li>
+  
 </ul>
 </div>
 
-<div class="my-2">
-<h2 class="font-medium text-lg">Education</h2>
-<ul class="list-disc">
-  <li>
-  <h6>Bachelors in IT,2019-2022</h6>
-  <span>Some College</span>
-  <span>GPA : 8/10</span>
+<div class="my-6">
+<h2 class="font-bold text-lg">Education</h2>
+<ul class="">
+  {{#each education}}
+  <li class="my-4">
+  <h6 class="font-medium">{{degree}},{{year}}</h6>
+  <div class="flex flex-col">
+  <span>{{schoolName}}</span>
+  <span>GPA : {{gpa}}</span>
+  </div>
   </li>
-</div>
-
-
-<div class="my-2">
-    <h2 class="font-medium text-lg">Projects</h2>
-<ul class="list-disc">
-  <li>
-  <h6>AlgoExpert</h6>
-  <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable
-  </p>
-  </li>
-  <li>
-  <h6>AlgoExpert</h6>
-  <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable
-  </p>
-  </li>
-  <li>
-  <h6>AlgoExpert</h6>
-  <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable
-  </p>
-  </li>
-  <li>
-  <h6>AlgoExpert</h6>
-  <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable
-  </p>
-  </li>
-  <li>
-  <h6>AlgoExpert</h6>
-  <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable
-  </p>
-  </li>
+  {{/each}}
 </ul>
 </div>
 
-<div class="my-2">
-<h2 class="font-medium text-lg">Certifications</h2>
+
+<div class="my-6">
+    <h2 class="font-bold text-lg">Projects</h2>
 <ul class="list-disc">
-  <li>
-  <h6>AlgoExpert</h6>
-  <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable
+  {{#each projects}}
+  <li class="mt-4">
+  <h6 class="font-medium">{{projectName}}</h6>
+  <p>
+    {{description}}
   </p>
   </li>
-  <li>
-  <h6>AlgoExpert</h6>
-  <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable
-  </p>
-  </li>
+  {{/each}}
 </ul>
 </div>
 
-<div class="my-2">
-<h2 class="font-medium text-lg">Interests</h2>
+<div class="my-6">
+<h2 class="font-bold text-lg">Certifications</h2>
 <ul class="list-disc">
-  <li>
-  <h6>AlgoExpert</h6>
-  <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable
+  {{#each certifications}}
+  <li class="mt-4">
+  <h6 class="font-medium">{{name}}</h6>
+  <p> {{year}}
   </p>
   </li>
-  <li>
-  <h6>AlgoExpert</h6>
-  <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable
-  </p>
-  </li>
+  {{/each}}
 </ul>
 </div>
+
 
   <script src="https://cdn.tailwindcss.com"></script>
   </body>
