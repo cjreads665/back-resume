@@ -14,7 +14,16 @@ app.use(cors());
 
 app.post("/data", (req: Request, res: Response) => {
   postData = req.body.data;
-  console.log(postData);
+  // console.log(postData.experience);
+  postData.experience.forEach((obj:any)=>{
+    
+    if(obj.endDate!=="Present"){
+      // console.log(`${obj.endDate[0]} ${obj.endDate[1]}`);
+      // {{endDate.[0]}} {{endDate.[1]}}
+      obj.endDate = `${obj.endDate[0]} ${obj.endDate[1]}`
+    }
+    console.log(obj);
+  })
   PdfController(postData);
 });
 
