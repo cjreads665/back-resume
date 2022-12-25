@@ -9,14 +9,14 @@
   <body class="mx-12 my-6">
     <div>
     <h1 class="text-left font-semibold text-4xl">{{personalInfo.name}}</h1>
-    <h5 class="font-medium text-xl my-2">Web Developer</h5>
+    <h5 class="font-medium text-xl my-2">{{personalInfo.current-role}}</h5>
   </div>
     <div class="my-2">
     <span>{{personalInfo.place}} |</span> 
     <span>Phone: {{personalInfo.phone}} |</span> 
     <span>Email: {{personalInfo.email}} |</span>
-    <span>Github: github-link |</span>
-    <span>LinkedIn: lk-link.com |</span>
+    <span>Github: {{personalInfo.github}} |</span>
+    <span>LinkedIn: {{personalInfo.linkedin}} |</span>
     <span>Website: {{personalInfo.website}} </span>
     </div>
 

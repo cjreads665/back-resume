@@ -25,6 +25,8 @@ app.post("/data", (req: Request, res: Response) => {
     console.log(obj);
   })
   PdfController(postData);
+  console.log('pdf generated');
+  console.log(postData);
 });
 
 app.get("/", (req: Request, res: Response) => {
@@ -33,14 +35,16 @@ app.get("/", (req: Request, res: Response) => {
 });
 
 app.get("/download", (req: Request, res: Response) => {
-  var file = fs.createReadStream("./resume.pdf");
-  var stat = fs.statSync("./resume.pdf");
-  res.setHeader("Content-Length", stat.size);
-  res.setHeader("Content-Type", "application/pdf");
-  res.setHeader("Content-Disposition", "attachment; filename=quote.pdf");
-  file.pipe(res);
-  console.log('download sent');
-  
+  setTimeout(()=>{
+    var file = fs.createReadStream("./resume.pdf");
+    var stat = fs.statSync("./resume.pdf");
+    res.setHeader("Content-Length", stat.size);
+    res.setHeader("Content-Type", "application/pdf");
+    res.setHeader("Content-Disposition", "attachment; filename=quote.pdf");
+    file.pipe(res);
+    console.log('download sent');
+  },3000)
+
 });
 
 try {
