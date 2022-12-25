@@ -8,11 +8,12 @@ const fs = require("fs-extra");
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 let postData;
+let isCreated = false;
 let cors = require("cors");
 app.use(cors());
 //routes
 
-app.post("/data", (req: Request, res: Response) => {
+app.post("/data",async (req: Request, res: Response) => {
   postData = req.body.data;
   // console.log(postData.experience);
   postData.experience.forEach((obj:any)=>{
@@ -24,18 +25,9 @@ app.post("/data", (req: Request, res: Response) => {
     }
     console.log(obj);
   })
-  PdfController(postData);
+ await PdfController(postData);
   console.log('pdf generated');
   console.log(postData);
-});
-
-app.get("/", (req: Request, res: Response) => {
-  // PdfController();
-  res.send("Server for resumes");
-});
-
-app.get("/download", (req: Request, res: Response) => {
-  setTimeout(()=>{
     var file = fs.createReadStream("./resume.pdf");
     var stat = fs.statSync("./resume.pdf");
     res.setHeader("Content-Length", stat.size);
@@ -43,9 +35,25 @@ app.get("/download", (req: Request, res: Response) => {
     res.setHeader("Content-Disposition", "attachment; filename=quote.pdf");
     file.pipe(res);
     console.log('download sent');
-  },3000)
-
 });
+
+app.get("/", (req: Request, res: Response) => {
+  // PdfController();
+  res.send("Server for resumes");
+});
+
+// app.get("/download", (req: Request, res: Response) => {
+//   setTimeout(()=>{
+//     var file = fs.createReadStream("./resume.pdf");
+//     var stat = fs.statSync("./resume.pdf");
+//     res.setHeader("Content-Length", stat.size);
+//     res.setHeader("Content-Type", "application/pdf");
+//     res.setHeader("Content-Disposition", "attachment; filename=quote.pdf");
+//     file.pipe(res);
+//     console.log('download sent');
+//   },3000)
+
+// });
 
 try {
   app.listen(port, (): void => {
